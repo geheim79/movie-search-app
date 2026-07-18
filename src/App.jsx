@@ -1,5 +1,8 @@
 // импорт библиотек маршрутизации
 import { Routes, Route } from "react-router-dom";
+// импорт компоненты Header
+import Header from "./components/Header/Header";
+
 
 // импорт компонент для страниц
 import Home from "./pages/Home/Home";
@@ -9,7 +12,7 @@ import MovieDetails from "./pages/MovieDetails/MovieDetails";
 function App() {
   return (
     <div>
-      <h1>Movie Search App</h1>
+      <Header />
       {/* создание таблицы маршрутов */}
       <Routes>
         {/* прописываем пути для страниц */}

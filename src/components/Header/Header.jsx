@@ -6,6 +6,7 @@ function Header() {
       <h1>Movie Search App</h1>
 
       <nav>
+        {/* Link меняет URL и говорит Router что адрес изменился */}
         <Link to="/">Главная</Link>{" | "}
         <Link to="/favorites">Избранное</Link>
       </nav>

@@ -1,6 +1,7 @@
 // импорт функции поиска из movieService.js
 import { searchMovies } from "../../services/movieService";
 import { useState, useEffect } from "react";
+import MovieCard from "../../components/Header/MovieCard";
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -14,20 +15,15 @@ function Home() {
     }
     loadMovies();
   }, []);
+  return (
+    <div>
+      <h1>Главная страница</h1>
+      {/* вызов метода MovieCard */}
+   {movies.map((movie) => (
+  <MovieCard key={movie.id} movie={movie} />
+))}
+    </div>
+  );
 }
-return (
-  <div>
-    <h1>Главная страница</h1>
-    {/* метод map для полученного массива movies кароточек фильмов */}
-    {movies.map((movie) => (
-      <div key={movie.id}>
-        <h2>{movie.title}</h2>
-        <p>⭐ Рейтинг: {movie.vote_average}</p>
-        <p>{movie.overview}</p>
-        <hr />
-      </div>
-    ))}
-  </div>
-);
 
 export default Home;

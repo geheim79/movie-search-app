@@ -16,13 +16,14 @@ function Home() {
   // Универсальная функция загрузки фильмов
 async function loadMovies(searchQuery) {
   setLoading(true);
+  setError("");
 
   try {
     const fetchedMovies = await searchMovies(searchQuery);
     setMovies(fetchedMovies);
   } catch (error) {
     console.error(error);
-    alert("Не удалось загрузить фильмы.");
+    setError("Не удалось загрузить фильмы.");
   } finally {
     setLoading(false);
   }
@@ -46,6 +47,7 @@ async function loadMovies(searchQuery) {
 
       <button onClick={() => loadMovies(query)}>Найти</button>
       {loading && <h2>Загрузка...</h2>}
+      {error && <h2>{error}</h2>}
       {movies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}

@@ -31,7 +31,10 @@ function Home() {
   // обработчик подтверждения  по энтер
   function handleSubmit(event) {
     event.preventDefault();
-
+    // проверка пустого поля если тектса нет - прекращаем выполнение
+    if (!query.trim()) {
+      return;
+    }
     loadMovies(query);
   }
 

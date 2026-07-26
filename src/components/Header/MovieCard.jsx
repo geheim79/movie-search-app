@@ -1,7 +1,9 @@
+import { Link } from "react-router-dom";
 function MovieCard({ movie }) {
   const imageUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
   return (
+  <Link to={`/movie/${movie.id}`}>
     <div>
       {movie.poster_path && (
         <img
@@ -14,9 +16,9 @@ function MovieCard({ movie }) {
       <h2>{movie.title}</h2>
       <p>⭐ Рейтинг: {movie.vote_average}</p>
       <p>{movie.overview}</p>
-      <hr />
     </div>
-  );
+  </Link>
+);
 }
 
 export default MovieCard;

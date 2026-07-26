@@ -8,12 +8,25 @@ function Home() {
 
   // Состояние для строки поиска
   const [query, setQuery] = useState("");
+  // ожидание загрузки стриницы при медл нете
+  const [loading, setLoading] = useState(false);
+  // новое состояние ошибки
+  const [error, setError] = useState("");
 
   // Универсальная функция загрузки фильмов
-  async function loadMovies(searchQuery) {
+async function loadMovies(searchQuery) {
+  setLoading(true);
+
+  try {
     const fetchedMovies = await searchMovies(searchQuery);
     setMovies(fetchedMovies);
+  } catch (error) {
+    console.error(error);
+    alert("Не удалось загрузить фильмы.");
+  } finally {
+    setLoading(false);
   }
+}
 
   // При первом открытии страницы загружаем Batman
   useEffect(() => {
@@ -31,15 +44,10 @@ function Home() {
         onChange={(e) => setQuery(e.target.value)}
       />
 
-      <button onClick={() => loadMovies(query)}>
-        Найти
-      </button>
-
+      <button onClick={() => loadMovies(query)}>Найти</button>
+      {loading && <h2>Загрузка...</h2>}
       {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-        />
+        <MovieCard key={movie.id} movie={movie} />
       ))}
     </div>
   );

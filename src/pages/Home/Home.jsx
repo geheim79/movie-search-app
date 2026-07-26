@@ -1,27 +1,46 @@
-// импорт функции поиска из movieService.js
-import { searchMovies } from "../../services/movieService";
 import { useState, useEffect } from "react";
+import { searchMovies } from "../../services/movieService";
 import MovieCard from "../../components/Header/MovieCard";
 
 function Home() {
+  // Состояние для списка фильмов
   const [movies, setMovies] = useState([]);
-  // оборачиваем searchMovies в useEffect с параметром в виде пустого массива - рендер один раз
+
+  // Состояние для строки поиска
+  const [query, setQuery] = useState("");
+
+  // Универсальная функция загрузки фильмов
+  async function loadMovies(searchQuery) {
+    const fetchedMovies = await searchMovies(searchQuery);
+    setMovies(fetchedMovies);
+  }
+
+  // При первом открытии страницы загружаем Batman
   useEffect(() => {
-    // Делаем асинхронную функцию внутри useEffect
-    async function loadMovies() {
-      // вызов async функции searchMovies для поиска  с параметром Batman на главной странице с сохранением массива в переменной moviesData
-      const fetchedMovies = await searchMovies("Batman");
-      setMovies(fetchedMovies);
-    }
-    loadMovies();
+    loadMovies("Batman");
   }, []);
+
   return (
     <div>
       <h1>Главная страница</h1>
-      {/* вызов метода MovieCard */}
-   {movies.map((movie) => (
-  <MovieCard key={movie.id} movie={movie} />
-))}
+
+      <input
+        type="text"
+        placeholder="Введите название фильма..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      <button onClick={() => loadMovies(query)}>
+        Найти
+      </button>
+
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+        />
+      ))}
     </div>
   );
 }

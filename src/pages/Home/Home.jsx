@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { searchMovies } from "../../services/movieService";
 import MovieCard from "../../components/Header/MovieCard";
+// Подключение стилей из Home css
 import "./Home.css";
 
 function Home() {
@@ -48,8 +49,8 @@ function Home() {
   return (
     <div>
       <h1>Главная страница</h1>
-
-      <form onSubmit={handleSubmit}>
+      {/* Изменение формы поиска */}
+      <form className="search-form" onSubmit={handleSubmit}>
         <input
           type="text"
           value={query}
@@ -62,10 +63,10 @@ function Home() {
       {loading && <h2>Загрузка...</h2>}
       {error && <h2>{error}</h2>}
       <div className="movies-grid">
-  {movies.map((movie) => (
-    <MovieCard key={movie.id} movie={movie} />
-  ))}
-</div>
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </div>
       {/* функция пагинации */}
       <div>
         <button onClick={() => setPage(page - 1)} disabled={page === 1}>

@@ -1,3 +1,4 @@
+// movieService.js Отвечает за общение с сервером
 // импорт библиотеки axios для работы с сетью
 
 import axios from "axios";

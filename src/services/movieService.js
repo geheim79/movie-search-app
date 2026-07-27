@@ -7,7 +7,7 @@ const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
 // создание и экспорт асинхронной функции поиска searchMovies
-export async function searchMovies(query) {
+export async function searchMovies(query,page =1) {
   //   вызываем библиотеку axios для отправки get запроса на сайт (в переменной BASE_URL )
   //   с ключом API и сохраниние обьекта в переменную response
   // также через await axios ждет получение данных от сервера
@@ -16,7 +16,7 @@ export async function searchMovies(query) {
       api_key: API_KEY,
       query: query,
       language: "ru-RU",
-      page: 1,
+      page: page,
     },
   });
   // проверка получения ответа с сервера в консоли

@@ -5,7 +5,8 @@ import MovieCard from "../../components/Header/MovieCard";
 function Home() {
   // Состояние для списка фильмов
   const [movies, setMovies] = useState([]);
-
+  const [page, setPage] = useState(1);
+  console.log(page);
   // Состояние для строки поиска
   const [query, setQuery] = useState("");
   // ожидание загрузки стриницы при медл нете
@@ -14,12 +15,12 @@ function Home() {
   const [error, setError] = useState("");
 
   // Асинхронная функция загрузки фильмов
-  async function loadMovies(searchQuery) {
+  async function loadMovies(searchQuery,currentPage =page) {
     setLoading(true);
     setError("");
 
     try {
-      const fetchedMovies = await searchMovies(searchQuery);
+      const fetchedMovies = await searchMovies(searchQuery,currentPage);
       setMovies(fetchedMovies);
     } catch (error) {
       console.error(error);
@@ -35,13 +36,13 @@ function Home() {
     if (!query.trim()) {
       return;
     }
-    loadMovies(query);
+    loadMovies(query,1);
   }
 
   // При первом открытии страницы загружаем Batman
   useEffect(() => {
-    loadMovies("Batman");
-  }, []);
+    loadMovies("Batman",page);
+  }, [page]);
 
   return (
     <div>
@@ -62,7 +63,26 @@ function Home() {
       {movies.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}
+      <div>
+  <button
+    onClick={() => setPage(page - 1)}
+    disabled={page === 1}
+  >
+    Назад
+  </button>
+
+  <span>
+    Страница {page}
+  </span>
+
+  <button
+    onClick={() => setPage(page + 1)}
+  >
+    Вперед
+  </button>
+</div>
     </div>
+    
   );
 }
 

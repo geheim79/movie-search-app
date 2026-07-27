@@ -52,11 +52,12 @@ function Home() {
       {/* Изменение формы поиска */}
       <form className="search-form" onSubmit={handleSubmit}>
         <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Введите название фильма..."
-        />
+  className="search-input"
+  type="text"
+  value={query}
+  onChange={(e) => setQuery(e.target.value)}
+  placeholder="Введите название фильма..."
+/>
 
         <button type="submit">Найти</button>
       </form>

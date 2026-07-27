@@ -1,0 +1,38 @@
+.movie-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.movie-card {
+  width: 260px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  margin: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-poster {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.movie-title {
+  font-size: 22px;
+  margin: 12px 0;
+}
+
+.movie-rating {
+  font-weight: bold;
+}
+
+.movie-overview {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+}

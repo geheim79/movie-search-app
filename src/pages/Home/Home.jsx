@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { searchMovies } from "../../services/movieService";
 import MovieCard from "../../components/Header/MovieCard";
+import "./Home.css";
 
 function Home() {
   // Состояние для списка фильмов
@@ -15,12 +16,12 @@ function Home() {
   const [error, setError] = useState("");
 
   // Асинхронная функция загрузки фильмов
-  async function loadMovies(searchQuery,currentPage =page) {
+  async function loadMovies(searchQuery, currentPage = page) {
     setLoading(true);
     setError("");
 
     try {
-      const fetchedMovies = await searchMovies(searchQuery,currentPage);
+      const fetchedMovies = await searchMovies(searchQuery, currentPage);
       setMovies(fetchedMovies);
     } catch (error) {
       console.error(error);
@@ -36,12 +37,12 @@ function Home() {
     if (!query.trim()) {
       return;
     }
-    loadMovies(query,1);
+    loadMovies(query, 1);
   }
 
   // При первом открытии страницы загружаем Batman
   useEffect(() => {
-    loadMovies("Batman",page);
+    loadMovies("Batman", page);
   }, [page]);
 
   return (
@@ -60,29 +61,22 @@ function Home() {
       </form>
       {loading && <h2>Загрузка...</h2>}
       {error && <h2>{error}</h2>}
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
-      <div>
-  <button
-    onClick={() => setPage(page - 1)}
-    disabled={page === 1}
-  >
-    Назад
-  </button>
-
-  <span>
-    Страница {page}
-  </span>
-
-  <button
-    onClick={() => setPage(page + 1)}
-  >
-    Вперед
-  </button>
+      <div className="movies-grid">
+  {movies.map((movie) => (
+    <MovieCard key={movie.id} movie={movie} />
+  ))}
 </div>
+      {/* функция пагинации */}
+      <div>
+        <button onClick={() => setPage(page - 1)} disabled={page === 1}>
+          Назад
+        </button>
+
+        <span>Страница {page}</span>
+
+        <button onClick={() => setPage(page + 1)}>Вперед</button>
+      </div>
     </div>
-    
   );
 }
 

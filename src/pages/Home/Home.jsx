@@ -48,7 +48,9 @@ function Home() {
 
   return (
     <div>
-      <h1>Главная страница</h1>
+      <h1 className="page-title">
+  Главная страница
+</h1>
       {/* Изменение формы поиска */}
       <form className="search-form" onSubmit={handleSubmit}>
         {/* стилизация поля поиска */}

@@ -39,3 +39,9 @@
 .search-button:hover {
   transform: scale(1.05);
 }
+
+.page-title {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 36px;
+}

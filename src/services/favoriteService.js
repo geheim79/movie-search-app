@@ -10,3 +10,13 @@ export function saveFavorites(favorites)
 {
   localStorage.setItem("favorites", JSON.stringify(favorites));
 }
+// добавление удаления из избранного
+export function removeFavorite(id) {
+  const favorites = getFavorites();
+
+  const updatedFavorites = favorites.filter(
+    (movie) => movie.id !== id
+  );
+
+  saveFavorites(updatedFavorites);
+}

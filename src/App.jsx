@@ -8,6 +8,7 @@ import Home from "./pages/Home/Home";
 import Favorites from "./pages/Favorites/Favorites";
 import MovieDetails from "./pages/MovieDetails/MovieDetails";
 
+
 function App() {
   console.log(import.meta.env);
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </div>
   );

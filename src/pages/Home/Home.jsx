@@ -51,15 +51,16 @@ function Home() {
       <h1>Главная страница</h1>
       {/* Изменение формы поиска */}
       <form className="search-form" onSubmit={handleSubmit}>
+        {/* стилизация поля поиска */}
         <input
-  className="search-input"
-  type="text"
-  value={query}
-  onChange={(e) => setQuery(e.target.value)}
-  placeholder="Введите название фильма..."
-/>
-
-        <button type="submit">Найти</button>
+          className="search-input"
+          type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Введите название фильма..."
+        />
+{/* стилизация кнопки "Найти" */}
+        <button className="search-button" type="submit">Найти</button>
       </form>
       {loading && <h2>Загрузка...</h2>}
       {error && <h2>{error}</h2>}

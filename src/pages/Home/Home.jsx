@@ -3,6 +3,8 @@ import { searchMovies } from "../../services/movieService";
 import MovieCard from "../../components/Header/MovieCard";
 // Подключение стилей из Home css
 import "./Home.css";
+// импорт компоненты пагинации
+import Pagination from "../../components/Pagination/Pagination";
 
 function Home() {
   // Состояние для списка фильмов
@@ -48,9 +50,7 @@ function Home() {
 
   return (
     <div>
-      <h1 className="page-title">
-  Главная страница
-</h1>
+      <h1 className="page-title">Главная страница</h1>
       {/* Изменение формы поиска */}
       <form className="search-form" onSubmit={handleSubmit}>
         {/* стилизация поля поиска */}
@@ -61,9 +61,15 @@ function Home() {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Введите название фильма..."
         />
-{/* стилизация кнопки "Найти" */}
-        <button className="search-button" type="submit">Найти</button>
+        {/* стилизация кнопки "Найти" */}
+        <button className="search-button" type="submit">
+          Найти
+        </button>
       </form>
+      <Pagination
+  page={page}
+  setPage={setPage}
+/>
       {loading && <h2>Загрузка...</h2>}
       {error && <h2>{error}</h2>}
       <div className="movies-grid">
@@ -72,15 +78,10 @@ function Home() {
         ))}
       </div>
       {/* функция пагинации */}
-      <div>
-        <button onClick={() => setPage(page - 1)} disabled={page === 1}>
-          Назад
-        </button>
-
-        <span>Страница {page}</span>
-
-        <button onClick={() => setPage(page + 1)}>Вперед</button>
-      </div>
+    <Pagination
+  page={page}
+  setPage={setPage}
+/>
     </div>
   );
 }

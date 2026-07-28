@@ -1,14 +1,20 @@
 import { Link } from "react-router-dom";
+// подключение стилизации
+import "./Header.css";
 
 function Header() {
   return (
-    <header>
-      <h1>Movie Search App</h1>
+    <header className="header">
+      <h1 className="logo">Movie Search App</h1>
 
-      <nav>
-        {/* Link меняет URL и говорит Router что адрес изменился */}
-        <Link to="/">Главная</Link>{" | "}
-        <Link to="/favorites">Избранное</Link>
+      <nav className="navigation">
+        <Link className="nav-link" to="/">
+          Главная
+        </Link>
+
+        <Link className="nav-link" to="/favorites">
+          Избранное
+        </Link>
       </nav>
     </header>
   );

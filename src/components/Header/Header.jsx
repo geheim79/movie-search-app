@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 // подключение стилизации
 import "./Header.css";
 
@@ -8,13 +8,23 @@ function Header() {
       <h1 className="logo">Movie Search App</h1>
 
       <nav className="navigation">
-        <Link className="nav-link" to="/">
-          Главная
-        </Link>
+        <NavLink
+  to="/"
+  className={({ isActive }) =>
+    isActive ? "nav-link active" : "nav-link"
+  }
+>
+  Главная
+</NavLink>
 
-        <Link className="nav-link" to="/favorites">
-          Избранное
-        </Link>
+<NavLink
+  to="/favorites"
+  className={({ isActive }) =>
+    isActive ? "nav-link active" : "nav-link"
+  }
+>
+  Избранное
+</NavLink>
       </nav>
     </header>
   );

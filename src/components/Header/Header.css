@@ -26,3 +26,10 @@
 .nav-link:hover {
   color: #60a5fa;
 }
+
+.active {
+  color: #facc15;
+  font-weight: bold;
+  border-bottom: 2px solid #facc15;
+  padding-bottom: 4px;
+}

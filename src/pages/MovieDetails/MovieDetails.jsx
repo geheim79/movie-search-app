@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { getMovieDetails } from "../../services/movieService";
 // получение и сохранение функции списска в избранном
 import { getFavorites, saveFavorites } from "../../services/favoriteService";
+// подключение стилей
+import "./MovieDetails.css";
 
 function MovieDetails() {
   const { id } = useParams();
@@ -24,49 +26,46 @@ function MovieDetails() {
   }
   // функция добавления в избранное
   // function addToFavorites - получение старых фильмов
-function addToFavorites() {
-  const favorites = getFavorites();
-// проверка есть ли уже такой фильм
-  const exists = favorites.some(
-    (item) => item.id === movie.id
-  );
+  function addToFavorites() {
+    const favorites = getFavorites();
+    // проверка есть ли уже такой фильм
+    const exists = favorites.some((item) => item.id === movie.id);
 
-  if (!exists) {
-    saveFavorites([
-      ...favorites,
-      movie
-    ]);
+    if (!exists) {
+      saveFavorites([...favorites, movie]);
+    }
   }
-}
   return (
-    <div>
+    <div className="movie-details">
       <button onClick={() => navigate(-1)}>Назад</button>
-      <button onClick={addToFavorites}>
-  ❤️ В избранное
-</button>
+      <button onClick={addToFavorites}>❤️ В избранное</button>
+      <div className="movie-content">
+        {movie.poster_path && (
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={movie.title}
+            width="300"
+          />
+        )}
+        <div className="movie-info">
+          <h1>{movie.title}</h1>
 
-      {movie.poster_path && (
-        <img
-          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt={movie.title}
-          width="300"
-        />
-      )}
+          <p>⭐ Рейтинг: {movie.vote_average}</p>
 
-      <h1>{movie.title}</h1>
+          <p>📅 Дата выхода: {movie.release_date}</p>
 
-      <p>⭐ Рейтинг: {movie.vote_average}</p>
+          <p>
+            Жанр:
+            {movie.genres.map((genre) => (
+              <span key={genre.id}> {genre.name}</span>
+            ))}
+          </p>
 
-      <p>📅 Дата выхода: {movie.release_date}</p>
-
-      <p>
-        Жанр:
-        {movie.genres.map((genre) => (
-          <span key={genre.id}> {genre.name}</span>
-        ))}
-      </p>
-
-      <p>{movie.overview}</p>
+          <p>{movie.overview}</p>
+        </div>{" "}
+        {/* movie-info */}
+      </div>{" "}
+      {/* movie-content */}
     </div>
   );
 }

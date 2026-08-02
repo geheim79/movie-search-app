@@ -66,10 +66,8 @@ function Home() {
           Найти
         </button>
       </form>
-      <Pagination
-  page={page}
-  setPage={setPage}
-/>
+      {/* верхняя пагинация */}
+      <Pagination page={page} setPage={setPage} />
       {loading && <h2>Загрузка...</h2>}
       {error && <h2>{error}</h2>}
       <div className="movies-grid">
@@ -77,11 +75,8 @@ function Home() {
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
-      {/* функция пагинации */}
-    <Pagination
-  page={page}
-  setPage={setPage}
-/>
+      {/* функция пагинации внизу*/}
+      <Pagination page={page} setPage={setPage} />
     </div>
   );
 }

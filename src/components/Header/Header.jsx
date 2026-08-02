@@ -5,7 +5,7 @@ import "./Header.css";
 function Header() {
   return (
     <header className="header">
-      <h1 className="logo">Movie Search App</h1>
+      <h1 className="logo">Movie Search App by Geheim_79(Alex)</h1>
 
       <nav className="navigation">
         <NavLink
